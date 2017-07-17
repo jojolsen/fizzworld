@@ -23,4 +23,27 @@
 		
 		<cfreturn Application.debug>
 	</cffunction>
+
+	<cffunction name="getEnvironmentConfigObj" returntype="component" access="public">
+		
+		<cfif !structKeyExists(request, 'EnvironmentConfigObj')>
+			<cfif isLocal()>
+				<cfset request.EnvironmentConfigObj = createObject('component', 'component.EnvironmentConfig_Example')>
+			<cfelse>
+				<cfset request.EnvironmentConfigObj = createObject('component', 'component.EnvironmentConfig')>
+			</cfif>
+		</cfif>
+
+		<cfreturn request.EnvironmentConfigObj>
+	</cffunction>
+
+	<cffunction name="setEnvironmentVariables" returntype="void" access="public">
+		
+		<cfset getEnvironmentConfigObj().setEnvironmentVariables()>
+	</cffunction>
+
+	<cffunction name="getName" returntype="string" access="public">
+		
+		<cfreturn getEnvironmentConfigObj().getName()>
+	</cffunction>
 </cfcomponent>
