@@ -1,4 +1,4 @@
-<cfcomponent output="false" extends="component.Environment">
+<cfcomponent output="false">
 	<!--- These functions are only called from a local envrionment because we don't deploy locally so no Octopus variable substitutions occur --->
 	<!--- These keys need to be added to EnvironmentConfig.cfc with the values being the Octopus variable names  --->
 
