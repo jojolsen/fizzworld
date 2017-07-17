@@ -4,7 +4,7 @@
 
 	<cffunction name="setEnvironmentVariables" returntype="void" access="public">
 		
-		<cfset Application.default_email_sender 	= "jdunham@webstaurantstore.com">
+		<cfset Application.default_email_sender = "jdunham@webstaurantstore.com">
 		<cfset Application.APIKey = "D3v4P1K3y!">
 		<cfset Application.DSN = "MyDSN">
 	</cffunction>
