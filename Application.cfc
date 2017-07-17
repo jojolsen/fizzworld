@@ -13,7 +13,7 @@
 		<cfset Application.Environment				= getEnvironmentObj().getEnvironment()>
 		<cfset Application.Debug					= !(getEnvironmentObj().isProduction())>
 
-		<cfset getEnvironmentObj().setEnvironmentVariables()>
+		<cfset structAppend(Application, getEnvironmentObj().getEnvironmentVariables())>
 	</cffunction>
 	
 	<cffunction name="onRequestStart">

@@ -3,11 +3,15 @@
 	<!--- The single-pound signs cause an error because it is invalid CFML syntax --->
 	<!--- The values defined below need to be added to the Octopus Deploy variables and deploy process in the format #{VariableName} --->
 
-	<cffunction name="setEnvironmentVariables" returntype="void" access="public">
+	<cffunction name="getEnvironmentVariables" returntype="struct" access="public">
 		
-		<cfset Application.default_email_sender = "#{DefaultEmailSender}">
-		<cfset Application.APIKey = "#{ProductionAPIKey}">
-		<cfset Application.DSN = "#{DSN}">
+		<cfset var environmentVariables = {
+			DefaultEmailSender : "#{DefaultEmailSender}"
+			, APIKey : "#{ProductionAPIKey}"
+			, DSN : "#{DSN}"
+		}>
+
+		<cfreturn environmentVariables>
 	</cffunction>
 
 	<cffunction name="getName" returntype="string" access="public">

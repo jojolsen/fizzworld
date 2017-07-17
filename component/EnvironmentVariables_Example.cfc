@@ -2,11 +2,15 @@
 	<!--- These functions are only called from a local envrionment because we don't deploy locally so no Octopus variable substitutions occur --->
 	<!--- These keys need to be added to EnvironmentConfig.cfc with the values being the Octopus variable names  --->
 
-	<cffunction name="setEnvironmentVariables" returntype="void" access="public">
+	<cffunction name="getEnvironmentVariables" returntype="struct" access="public">
 		
-		<cfset Application.default_email_sender = "jdunham@webstaurantstore.com">
-		<cfset Application.APIKey = "D3v4P1K3y!">
-		<cfset Application.DSN = "MyDSN">
+		<cfset var environmentVariables = {
+			DefaultEmailSender : "jdunham@webstaurantstore.com"
+			, APIKey : "D3v4P1K3y!"
+			, DSN : "MyDSN"
+		}>
+
+		<cfreturn environmentVariables>
 	</cffunction>
 
 	<cffunction name="getName" returntype="string" access="public">
