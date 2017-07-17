@@ -9,9 +9,9 @@
 		<cfset Application.InitTime					= Now()>
 		<cfset Application.Name						= This.name>
 		<cfset Application.SitePages				= {}>
-		<cfset Application.cache					= {}>
+		<cfset Application.Cache					= {}>
 		<cfset Application.Environment				= getEnvironmentObj().getEnvironment()>
-		<cfset Application.debug					= !(getEnvironmentObj().isProduction())>
+		<cfset Application.Debug					= !(getEnvironmentObj().isProduction())>
 
 		<cfset getEnvironmentObj().setEnvironmentVariables()>
 	</cffunction>
