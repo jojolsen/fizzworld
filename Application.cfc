@@ -1,7 +1,5 @@
 <cfcomponent output="no">
-	<cfif true>
-		<cfset This.Name = getName()>
-	</cfif>
+	<cfset This.Name = getName()>
 	
 	<!--- Disable session management... --->
 	<cfset This.SessionManagement	= "false">
@@ -15,10 +13,10 @@
 		<cfset Application.Environment				= getEnvironmentObj().getEnvironment()>
 		<cfset Application.debug					= !(getEnvironmentObj().isProduction())>
 
-		<cfif getEnvironmentObj().getEnvironment() EQ 'local'>
-			<cfset Application.default_email_sender 	= "jdunham@webstaurantstore.com">
-		<cfelse>
+		<cfif useODVariableSubstitution()>
 			<cfset Application.default_email_sender 	= "{##DefaultEmailSender##}">
+		<cfelse>
+			<cfset Application.default_email_sender 	= "jdunham@webstaurantstore.com">
 		</cfif>
 	</cffunction>
 	
@@ -40,15 +38,20 @@
 		
 		<h2>ERRORS:</h2>
 		<cfdump var="#arguments#">
+	</cffunction>
+
+	<cffunction name="useODVariableSubstitution" returntype="boolean" access="private">
+		
+		<cfreturn !(getEnvironmentObj().isLocal())>
 	</cffunction>	
 
 	<cffunction name="getName" returntype="string" access="private">
 		
-		<cfif getEnvironmentObj().getEnvironment() EQ 'local'>
-			<cfreturn 'FizzleSite_v2_LOCAL'>
+		<cfif useODVariableSubstitution()>
+			<cfreturn "{##ApplicationName##}">
 		</cfif>
 
-		<cfreturn "{##ApplicationName##}">
+		<cfreturn 'FizzleSite_v2_LOCAL'>
 	</cffunction>
 
 	<cffunction name="getEnvironmentObj" returntype="component" access="private">
